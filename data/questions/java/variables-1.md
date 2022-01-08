@@ -2,7 +2,7 @@
 title: Biến trong Java được lưu ở heap hay stack?
 seoTitle: Lorem ipsum
 abstract: Lorem ipsum
-cover_image: "/images/posts/img3.jpg"
+# cover_image: "/images/posts/img3.jpg"
 isPublished: true
 publishedDate: 2022-01-02T09:15:00+0700
 lastUpdatedDate: 2022-01-02T09:15:00+0700

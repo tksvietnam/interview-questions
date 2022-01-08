@@ -2,7 +2,7 @@
 title: "Django Crash Course"
 seoTitle: Django is a very powerful, high level Python framework for building web applications
 abstract: Django is a very powerful, high level Python framework for building web applications
-cover_image: "/images/posts/img3.jpg"
+# cover_image: "/images/posts/img3.jpg"
 isPublished: false
 publishedDate: 2021-12-20T09:15:00+0700
 lastUpdatedDate: 2021-12-20T09:15:00+0700
