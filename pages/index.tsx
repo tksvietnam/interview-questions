@@ -12,7 +12,7 @@ import Question from "@/components/Question";
 interface HomeProps {
   questions: Question[];
 }
-const Home: NextPage = ({ questions }: HomeProps) => {
+const Home: NextPage<HomeProps> = ({ questions }: HomeProps) => {
   return (
     <div className={styles.container}>
       <Head>

@@ -5,8 +5,10 @@ import matter from "gray-matter";
 import { marked } from "marked";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 import { getFiles } from "@/lib/file";
+import { GetStaticProps } from "next/types";
 
 const prism = require("prismjs");
 
@@ -58,7 +60,7 @@ export default function QuestionPage({
       <div className="card card-page">
         <h1 className="question">{title}</h1>
         <div className="publish-date">Posted on {publishedDate}</div>
-        <img src={cover_image} alt="" />
+        {cover_image && <Image src={cover_image} alt={title} />}
 
         <div
           dangerouslySetInnerHTML={{ __html: marked(content) }}
@@ -80,13 +82,17 @@ export async function getStaticPaths() {
       .replace(path.basename(f), "")
       .slice(0, -1);
 
-    paths.push({
-      params: {
-        category: category,
-        slug: path.basename(f, ".md"),
-      },
-    });
+    if (category) {
+      paths.push({
+        params: {
+          category: category,
+          slug: path.basename(f, ".md"),
+        },
+      });
+    }
   }
+
+  // console.log("[QuestionPage.getStaticPaths] paths", paths);
 
   return {
     paths,
@@ -94,10 +100,10 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps(props) {
-  const {
-    params: { category, slug },
-  } = props;
+export const getStaticProps: GetStaticProps = async (props) => {
+  const category = props.params?.category as string;
+  const slug = props.params?.slug as string;
+
   console.log("[QuestionPage.getStaticProps] router with question", props);
 
   const questionPath = path.join("data", "questions", category, slug + ".md");
@@ -111,4 +117,4 @@ export async function getStaticProps(props) {
       content,
     },
   };
-}
+};

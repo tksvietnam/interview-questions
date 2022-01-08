@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 interface QuestionProps {
   question: Question;
@@ -7,7 +8,12 @@ const Question = ({ question }: QuestionProps) => {
   console.log("[Question] printing", question);
   return (
     <div className="card">
-      <img src={question.frontmatter.cover_image} alt="" />
+      {question.frontmatter.cover_image && (
+        <Image
+          src={question.frontmatter.cover_image}
+          alt={question.frontmatter.title}
+        />
+      )}
 
       <div className="post-date">
         Questioned on {question.frontmatter.publishedDate}
